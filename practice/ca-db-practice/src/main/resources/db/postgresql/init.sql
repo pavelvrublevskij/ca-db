@@ -21,3 +21,31 @@ CREATE ROLE app_user WITH
 GRANT gr_app TO app_user;
 
 COMMENT ON ROLE app_user IS 'User for our small application';
+
+
+CREATE DATABASE ca_app_db
+    WITH
+    OWNER = gr_app
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+-- !!! below scripts should be run when we connected to ca_app_db !!!
+
+GRANT ALL ON DATABASE ca_app_db TO gr_app;
+
+CREATE SCHEMA IF NOT EXISTS public
+    AUTHORIZATION gr_app;
+
+COMMENT ON SCHEMA public
+    IS 'standard public schema';
+
+GRANT USAGE ON SCHEMA public TO PUBLIC;
+
+GRANT ALL ON SCHEMA public TO gr_app;
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+    GRANT INSERT, DELETE, SELECT, UPDATE ON TABLES TO gr_app;
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+    GRANT ALL ON SEQUENCES TO gr_app;
