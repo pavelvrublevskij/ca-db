@@ -59,3 +59,7 @@ CREATE TABLE person (
 
 ALTER TABLE IF EXISTS public.person
     OWNER to gr_app;
+
+insert into person (name, surname, age)
+values ('Petras', 'Petraitis', null),
+       ('Antanas', 'Antanaitis', 33);
