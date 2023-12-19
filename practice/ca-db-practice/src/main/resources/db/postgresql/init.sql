@@ -63,3 +63,10 @@ ALTER TABLE IF EXISTS public.person
 insert into person (name, surname, age)
 values ('Petras', 'Petraitis', null),
        ('Antanas', 'Antanaitis', 33);
+
+CREATE TABLE IF NOT EXISTS auto
+(
+    id serial NOT NULL,
+    number varchar(10) NOT NULL,
+    CONSTRAINT auto_id_pk PRIMARY KEY (id)
+);
