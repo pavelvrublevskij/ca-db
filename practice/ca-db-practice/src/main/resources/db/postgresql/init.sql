@@ -73,3 +73,9 @@ CREATE TABLE IF NOT EXISTS auto
 
 alter table auto
     add person_id integer;
+
+ALTER TABLE IF EXISTS auto
+    ADD CONSTRAINT auto_person_id_person_id_fkey FOREIGN KEY (person_id)
+        REFERENCES person (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT;
