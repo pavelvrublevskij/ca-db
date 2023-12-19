@@ -70,3 +70,6 @@ CREATE TABLE IF NOT EXISTS auto
     number varchar(10) NOT NULL,
     CONSTRAINT auto_id_pk PRIMARY KEY (id)
 );
+
+alter table auto
+    add person_id integer;
