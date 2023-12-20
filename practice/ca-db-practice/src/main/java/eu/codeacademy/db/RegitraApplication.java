@@ -16,7 +16,9 @@ public final class RegitraApplication {
 
 		PersonService personService = new PersonService(connection);
 		List<String> personSurnames = personService.getPersonSurnames();
-		// TODO: ....
+
+		personSurnames.forEach(value -> System.out.println("Surname from db: " + value));
+
 	}
 
 }
