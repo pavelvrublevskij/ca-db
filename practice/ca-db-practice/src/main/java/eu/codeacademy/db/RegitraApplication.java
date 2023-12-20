@@ -29,8 +29,13 @@ public final class RegitraApplication {
 
 	private void doAutoSaveExample() {
 		try {
-			Auto auto = new Auto("AAA111");
-			autoService.save(auto);
+			Auto auto = new Auto("AAA222");
+			boolean numberExists = autoService.getAll().stream()
+					.anyMatch(autoObj -> autoObj.getNumber().contains(auto.getNumber()));
+
+			if (!numberExists) {
+				autoService.save(auto);
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

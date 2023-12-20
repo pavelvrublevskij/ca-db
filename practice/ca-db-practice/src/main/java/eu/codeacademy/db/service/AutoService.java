@@ -35,4 +35,23 @@ public class AutoService {
 			connection.setAutoCommit(true);
 		}
 	}
+
+	public List<Auto> getAll() {
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM auto");
+
+			final List<Auto> autos = new ArrayList<>();
+			while (resultSet.next()) {
+				String number = resultSet.getString("number");
+
+				autos.add(new Auto(number));
+			}
+
+			return autos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("ERROR -> Connection into database has a problem: " + e.getMessage());
+		}
+	}
 }
