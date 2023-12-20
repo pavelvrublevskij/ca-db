@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import eu.codeacademy.db.model.Person;
 import eu.codeacademy.db.service.PersonService;
 import eu.codeacademy.db.utils.JdbcUtil;
 
@@ -19,6 +20,8 @@ public final class RegitraApplication {
 
 		personSurnames.forEach(value -> System.out.println("Surname from db: " + value));
 
+		List<Person> persons = personService.getAll();
+		persons.forEach(System.out::println);
 	}
 
 }
