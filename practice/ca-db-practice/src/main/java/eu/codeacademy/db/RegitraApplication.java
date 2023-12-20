@@ -12,16 +12,25 @@ import eu.codeacademy.db.utils.JdbcUtil;
 
 public final class RegitraApplication {
 
+	private PersonService personService;
+
 	public void run() {
 		Connection connection = JdbcUtil.buildConnection();
 
-		PersonService personService = new PersonService(connection);
+		personService = new PersonService(connection);
+		getSurnameExample();
+		getPersonAsObjectExample();
+	}
+
+	private void getPersonAsObjectExample() {
+		List<Person> persons = personService.getAll();
+		persons.forEach(System.out::println);
+	}
+
+	private void getSurnameExample() {
 		List<String> personSurnames = personService.getPersonSurnames();
 
 		personSurnames.forEach(value -> System.out.println("Surname from db: " + value));
-
-		List<Person> persons = personService.getAll();
-		persons.forEach(System.out::println);
 	}
 
 }
