@@ -20,8 +20,8 @@ public class AutoService {
 
 	public void save(Auto auto) throws SQLException {
 		try {
-			Statement statement = connection.createStatement();
 			connection.setAutoCommit(false);
+			Statement statement = connection.createStatement();
 			// TODO: padaryti saugojima
 			connection.commit();
 		} catch (SQLException e) {
