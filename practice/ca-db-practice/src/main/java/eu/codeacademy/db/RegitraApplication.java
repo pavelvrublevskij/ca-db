@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import eu.codeacademy.db.model.Auto;
 import eu.codeacademy.db.model.Person;
 import eu.codeacademy.db.service.AutoService;
 import eu.codeacademy.db.service.PersonService;
@@ -28,7 +29,8 @@ public final class RegitraApplication {
 
 	private void doAutoSaveExample() {
 		try {
-			autoService.save(null);
+			Auto auto = new Auto("AAA111");
+			autoService.save(auto);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

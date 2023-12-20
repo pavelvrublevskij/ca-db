@@ -24,7 +24,7 @@ public class AutoService {
 			connection.setAutoCommit(false);
 			PreparedStatement statement = connection.prepareStatement(
 					"INSERT INTO auto (number) VALUES (?)");
-			statement.setString(1, "AAA111");
+			statement.setString(1, auto.getNumber());
 			statement.execute();
 
 			connection.commit();
