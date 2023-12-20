@@ -6,17 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import eu.codeacademy.db.utils.JdbcUtil;
+
 /**
  * Hello world!
  */
 public class App {
 
-	public static void main(String[] args) {
-		try {
-			Connection connection = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/ca_app_db",
-					"app_user",
-					"app_user_password");
+	public static void main(String[] args) throws SQLException {
+			Connection connection = JdbcUtil.buildConnection();
 
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM person");
@@ -27,9 +25,5 @@ public class App {
 			}
 
 			System.out.println("Database connected successfully!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException("ERROR -> Connection into database has a problem: " + e.getMessage());
-		}
 	}
 }
