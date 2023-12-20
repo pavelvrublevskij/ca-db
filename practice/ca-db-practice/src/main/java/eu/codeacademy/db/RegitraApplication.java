@@ -18,7 +18,7 @@ public final class RegitraApplication {
 	private AutoService autoService;
 
 	public void run() {
-		Connection connection = JdbcUtil.buildConnection();
+		Connection connection = JdbcUtil.getConnection();
 
 		personService = new PersonService(connection);
 		autoService = new AutoService(connection);
