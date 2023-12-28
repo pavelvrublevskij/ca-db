@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import eu.codeacademy.pojo.EmployeePojo;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 
 @RequiredArgsConstructor
 public class EmployeeDao {
 
+	@Getter
 	private final Session session;
 
 	// R - Read
@@ -35,4 +37,5 @@ public class EmployeeDao {
 	public void deleteById(Long id) {
 		getOneById(id).ifPresent(session::remove);
 	}
+
 }
