@@ -36,6 +36,12 @@ public class App {
 		System.out.printf("Employee by id %d is: %s", 1L, employeePojo);
 
 		employeeService.save("Dalia Grybauskaite", BigDecimal.valueOf(6000));
+
+		employeePojo = employeeService.getById(3L);
+		employeePojo.setLastName("Grybayskaitė");
+		employeeService.update(employeePojo);
+
+		employeeService.deleteById(1L);
 	}
 
 	private static void hqlQueryExample() {

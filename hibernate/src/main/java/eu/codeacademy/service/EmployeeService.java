@@ -37,4 +37,24 @@ public class EmployeeService {
 			transaction.rollback();
 		}
 	}
+
+	public void update(EmployeePojo employeePojo) {
+		Transaction transaction = employeeDao.getSession().beginTransaction();
+		try {
+			employeeDao.persist(employeePojo);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+		}
+	}
+
+	public void deleteById(long id) {
+		Transaction transaction = employeeDao.getSession().beginTransaction();
+		try {
+			employeeDao.deleteById(id);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+		}
+	}
 }
