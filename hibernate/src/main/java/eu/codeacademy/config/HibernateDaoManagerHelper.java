@@ -5,9 +5,13 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateDaoManagerHelper {
 
-	public static SessionFactory getSessionFactory() {
-		Configuration cfg = HibernateConfig.initConfiguration();
+	private static SessionFactory sessionFactory;
 
-		return cfg.buildSessionFactory();
+	public static SessionFactory getSessionFactory() {
+		if (sessionFactory == null) {
+			sessionFactory = HibernateConfig.initConfiguration().buildSessionFactory();
+		}
+
+		return sessionFactory;
 	}
 }
