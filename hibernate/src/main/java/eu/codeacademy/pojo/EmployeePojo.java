@@ -1,5 +1,7 @@
 package eu.codeacademy.pojo;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,11 +24,12 @@ public class EmployeePojo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "first_name")
+	@Column(name = "first_name", length = 30, nullable = false)
 	private String firstName;
 
-	@Column(name = "last_name")
+	@Column(name = "last_name", length = 50, nullable = false)
 	private String lastName;
 
-	private int salary;
+	@Column(precision = 20, scale = 2, nullable = false)
+	private BigDecimal salary;
 }
