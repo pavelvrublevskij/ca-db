@@ -1,25 +1,24 @@
 package eu.codeacademy.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import eu.codeacademy.pojo.EmployeePojo;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 
+@RequiredArgsConstructor
 public class EmployeeDao {
 
 	private final Session session;
-
-	public EmployeeDao(Session session) {
-		this.session = session;
-	}
 
 	// R - Read
 	public List<EmployeePojo> getAll() {
 		return session.createQuery("FROM EmployeePojo", EmployeePojo.class).list();
 	}
 
-	public EmployeePojo getOneById(Long id) {
-		return session.get(EmployeePojo.class, id);
+	public Optional<EmployeePojo> getOneById(Long id) {
+		return Optional.ofNullable(session.get(EmployeePojo.class, id));
 	}
 
 	// C - Create or U - Update
@@ -34,9 +33,6 @@ public class EmployeeDao {
 	}
 
 	public void deleteById(Long id) {
-		EmployeePojo employeePojo = getOneById(id);
-		if (employeePojo != null) {
-			session.remove(employeePojo);
-		}
+		getOneById(id).ifPresent(session::remove);
 	}
 }
