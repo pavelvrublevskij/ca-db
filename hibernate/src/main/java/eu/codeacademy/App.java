@@ -1,12 +1,12 @@
 package eu.codeacademy;
 
+import eu.codeacademy.config.HibernateConfig;
 import org.hibernate.cfg.Configuration;
 
 public class App {
 
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration();
-		configuration.configure().buildSessionFactory();
+		HibernateConfig.init();
 
 		System.out.println("Hi from hibernate!!");
 	}
